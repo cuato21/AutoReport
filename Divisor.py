@@ -4,6 +4,7 @@ from docx.shared import Pt, RGBColor, Inches
 import os
 import shutil
 
+#Establece un color a la palabra Risk dependiendo de la criticidad
 def obtener_estilo_por_riesgo(riesgo):
     estilos = {
         'Critical': {'color': RGBColor(255, 0, 0)},  # Rojo fuerte
@@ -22,7 +23,7 @@ def agregar_datos_a_documento_existente(ruta_excel, ruta_documento_existente, di
 
         ip_columna = 1  # Supongamos que la columna de IPs es la primera (columna A)
 
-        # Obtener IPs únicas
+        # Obtener IPs únicas para generar los documentos
         ips_unicas = set()
         for row in range(2, hoja.max_row + 1):
             ip = hoja.cell(row=row, column=ip_columna).value
@@ -78,6 +79,7 @@ def agregar_datos_a_documento_existente(ruta_excel, ruta_documento_existente, di
         # Eliminar el documento temporal
         os.remove('documento_temporal.docx')
 
+#Estos datos se modifican para indicar el archivo de origen xlsx o csv, el archivo donde se pegara la informacion .docx y la ruta destino donde se guardaran los archivos creados
 if __name__ == "__main__":
     ruta_excel = 'Sustituir por ruta' #Ruta del csv o excel que genero la herramienta.
     ruta_documento_existente = 'Sustituir por ruta' #Ruta del documento existente a editar.
